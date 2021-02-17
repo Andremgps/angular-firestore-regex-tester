@@ -1,0 +1,101 @@
+<div class="regex-tester-wrapper" fxLayout="row" fxLayoutAlign="center start">
+  <mat-card class="box regex-tester-box" style="min-width: 80%">
+    <mat-card-header style="justify-content: center">
+      <mat-card-title> Regex Tester </mat-card-title>
+    </mat-card-header>
+    <form class="form" [formGroup]="regexTesterForm">
+      <mat-card-content fxLayout="column">
+        <h3 *ngIf="isEditExpression">Regex Name: {{ regexName }}</h3>
+        <div fxLayoutAlign="space-between center">
+          <mat-form-field [fxFlex]="isEditExpression ? '50%' : '70%'">
+            <input
+              matInput
+              placeholder="Expressão regular"
+              formControlName="regexExpression"
+            />
+            <mat-error *ngIf="regexTesterForm.get('regexExpression')?.invalid"
+              >Preencha uma expressão</mat-error
+            >
+          </mat-form-field>
+          <button
+            type="button"
+            mat-flat-button
+            color="accent"
+            fxFlex="5%"
+            (click)="openSaveExpressionDialog()"
+          >
+            <mat-icon>save</mat-icon>
+          </button>
+          <button
+            type="button"
+            mat-flat-button
+            *ngIf="isEditExpression"
+            color="accent"
+            fxFlex="20%"
+            (click)="clearForm()"
+          >
+            Nova Expressão
+          </button>
+          <button
+            type="button"
+            [routerLink]="['/regexList']"
+            mat-flat-button
+            color="accent"
+            fxFlex="20%"
+          >
+            Minhas Expressões
+          </button>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 0px">Flags</h3>
+          <section class="checkbox-section">
+            <mat-checkbox class="checkbox-margin" formControlName="iFlag"
+              >i - Case-insensitive</mat-checkbox
+            >
+            <mat-checkbox class="checkbox-margin" formControlName="mFlag"
+              >m - Multiline</mat-checkbox
+            >
+            <mat-checkbox class="checkbox-margin" formControlName="gFlag"
+              >g - Global</mat-checkbox
+            >
+          </section>
+        </div>
+
+        <mat-form-field class="full-width" style="margin-bottom: 20px">
+          <textarea
+            matInput
+            placeholder="Texto a ser testado"
+            formControlName="textToTest"
+            rows="3"
+          ></textarea>
+          <mat-error *ngIf="regexTesterForm.get('textToTest')?.invalid"
+            >Preencha um texto a ser testado</mat-error
+          >
+        </mat-form-field>
+
+        <div class="warning-message" *ngIf="showMessage">{{ message }}</div>
+
+        <div class="matching-results" *ngIf="formatedResult !== ''">
+          <h3 class="results-header" fxLayoutAlign="center center">
+            Resultados estão marcados a seguir
+          </h3>
+          <pre
+            fxLayoutAlign="center center"
+            class="results-content"
+            [innerHtml]="formatedResult"
+          ></pre>
+        </div>
+      </mat-card-content>
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        class="btn-block"
+        (click)="testRegex()"
+      >
+        Testar
+      </button>
+    </form>
+  </mat-card>
+</div>

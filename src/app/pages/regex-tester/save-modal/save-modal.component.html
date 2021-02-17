@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="dialog-title">Salvar Expressão</h2>
+<mat-dialog-content
+  class="dialog-content"
+  [formGroup]="expressionForm"
+  fxLayout="column"
+>
+  <mat-form-field fxFlex>
+    <input matInput placeholder="Nome" formControlName="expressionName" />
+    <mat-error *ngIf="expressionForm.get('expressionName')?.invalid">
+      Preencha um nome
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <input matInput placeholder="Expressão" formControlName="expression" />
+    <mat-error *ngIf="expressionForm.get('expression')?.invalid">
+      Preencha a expressão
+    </mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions" *ngIf="!isLoading">
+  <button mat-flat-button color="primary" (click)="saveExpression()">
+    Salvar
+  </button>
+  <button mat-flat-button color="warn" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
+<div *ngIf="isLoading" fxLayoutAlign="center">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>

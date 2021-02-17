@@ -1,0 +1,44 @@
+.regex-tester-wrapper {
+  height: 100%;
+  margin-top: 3%;
+}
+.regex-tester-box {
+  max-width: 900px !important;
+  width: 100% !important;
+  min-width: unset !important;
+  margin: 20px;
+}
+
+.form {
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+}
+.full-width,
+.btn-block {
+  width: 100%;
+}
+.warning-message {
+  background-color: #c43c35;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.matching-results {
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.results-header {
+  font-size: 25px;
+}
+
+.checkbox-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  .checkbox-margin {
+    margin: 0 10px;
+  }
+}
